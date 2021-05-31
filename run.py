@@ -58,12 +58,19 @@ print("Number of possible pairs (soln, prob_class): ", len(sol_prob_pairs))
 
 instance_files = {}
 for file in os.listdir("instances"):
-    for (_, prob_class) in sol_prob_pairs:
+    for prob_class in prob_classes.keys():
         if file.startswith(prob_classes[prob_class]):
             if prob_class not in instance_files:
                 instance_files[prob_class] = []
             
             instance_files[prob_class].append(file)
+
+for prob_class in instance_files.keys():
+    instance_files[prob_class] = sorted(instance_files[prob_class])
+
+if DEBUG:
+    with open("a.json", 'w') as f:
+        json.dump(instance_files, f, indent=4, sort_keys=True)
 
 
 # run solutions on all problems
