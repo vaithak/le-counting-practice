@@ -1,12 +1,13 @@
 import time
 import argparse
 import os
+import sys
 import json
 import itertools
 import time
 import subprocess
 
-timeout = 3600 * 2  # 2 hours
+timeout = 60 * 10  # 10 mins
 DEBUG = False
 
 
@@ -23,7 +24,7 @@ def execute_soln(soln_exec, instance):
     return out_str, end_time
 
 def get_stats_from_instance_filename(filename):
-    no_ext = filename.split('.', 1)[0]
+    no_ext = '.'.join(filename.split('.')[0:-1])
     idx = int(no_ext.split('_')[-1])
     num_elem = int(no_ext.split('_')[-2])
     return num_elem, idx
@@ -76,20 +77,23 @@ if DEBUG:
 # run solutions on all problems
 for (soln, prob_class) in sol_prob_pairs:
     out_filename = f"results/{soln}_{prob_class}.json"
+    if os.path.isfile(out_filename):
+        print("Skipping ", out_filename)
+        continue
+
     results = []
     for instance_file in instance_files[prob_class]:
         if DEBUG:
             instance_file = "avgdeg_3_008_2.txt" # remove
         
         print("Soln: ", soln, ", prob_class: ", prob_class, ", instance_file: ", instance_file)
-        
+        sys.stdout.flush()
+
         out_str, exec_time = execute_soln(soln_execs[soln], instance=instance_file)
         if exec_time == -1:
             print("Timeout")
-            if DEBUG:
-                break # remove
-            
-            continue
+            sys.stdout.flush()
+            break
 
         num_elem, idx = get_stats_from_instance_filename(instance_file) 
         res = {
@@ -100,6 +104,9 @@ for (soln, prob_class) in sol_prob_pairs:
         }
        
         print(res)
+        print()
+        sys.stdout.flush()
+
         results.append(res)
         if DEBUG:
             break # remove
@@ -110,4 +117,5 @@ for (soln, prob_class) in sol_prob_pairs:
 
     if DEBUG:
         break #remove
+
 
