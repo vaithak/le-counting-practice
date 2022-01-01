@@ -1,3 +1,13 @@
+## Running and testing solutions
+* First generate all instance problems and build the executables of the provided algorithms by running `make`.
+* Next build executable of your custom algorithms and place them in the `solutions` directory. You custom executable should take the json file containing the poset as a command line input.
+* Now there are three main python files for running, plotting and analyzing the solutions.
+  - `run.py`: 
+  - `plot_utils,py`: 
+  - `error_comp,py`: 
+  
+<hr>  
+
 # Counting Linear Extensions in Practice
 
 The code used for the experiments in the IJCAI 2018 paper [A Scalable Scheme for Counting Linear Extensions](https://www.ijcai.org/proceedings/2018/0710.pdf) and AAAI 2018 paper [Counting Linear Extensions in Practice: MCMC versus Exponential Monte Carlo](https://tuhat.helsinki.fi/portal/services/downloadRegister/120857481/paper.pdf).
