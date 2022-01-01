@@ -1,10 +1,17 @@
 ## Running and testing solutions
 * First generate all instance problems and build the executables of the provided algorithms by running `make`.
-* Next build executable of your custom algorithms and place them in the `solutions` directory. You custom executable should take the json file containing the poset as a command line input.
+* Next build executable of your custom algorithms and place them in the `solutions` directory. You custom executable should take the input file containing the poset as a command line input.
 * Now there are three main python files for running, plotting and analyzing the solutions.
-  - `run.py`: 
-  - `plot_utils,py`: 
-  - `error_comp,py`: 
+  - `run.py`: This file is for running combinations of algorithms and problem classes
+    - All the algorithms executables that will be run are defined in the dict `soln_execs` - [link](https://github.com/vaithak/le-counting-practice/blob/master/run.py#L33). The keys of this dict are the name of the algorithms and the corresponding value is the command to run the executable of that algorithm, where {0} will be replaced by the input filename.
+    - The problem classes that will be run for each algorithm are defined in the dict `prob_classes` - [link](https://github.com/vaithak/le-counting-practice/blob/master/run.py#L44).  
+    - For each combination of (algorithm, problem_class), the results will be logged in a separate file in the `results` folder.  
+      If a file already exists for a pair then it won't be run again. For example, if the `results` folder already contains a file `Tootsie-pop_AvgDeg_3.json` 
+      , then the algorithm `Tootsie-Pop` won't be run again for the problem class `AvgDeg_3` (this is to ensure that one has moved the results someplace else and
+      they don't get overwritten by mistake).
+  - `plot_utils,py`: This file is for reading the logs from the results folder and plotting the results. This file also contains similar dicts for 
+     problem classes and solutions. Simply run `python plot_utils.py`. 
+  - `error_comp,py`:
   
 <hr>  
 
