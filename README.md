@@ -11,7 +11,7 @@
       they don't get overwritten by mistake).
   - `plot_utils,py`: This file is for reading the logs from the results folder and plotting the results. This file also contains similar dicts for 
      problem classes and solutions. Simply run `python plot_utils.py`. 
-  - `error_comp,py`:
+  - `error_comp,py`: This file is for comparing results of two algorithms. One can specify the algo names here: [link](https://github.com/vaithak/le-counting-practice/blob/master/error_comp.py#L36). Then the script will read the result logs for the specified problem classes of both of these algorithms and calculate relative error between them.
   
 <hr>  
 
